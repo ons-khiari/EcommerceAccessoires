@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const database = "mongodb://0.0.0.0:27017/Accessoires";
-const Accessoire = require("./accessoires");
+const database = "mongodb://0.0.0.0:27017/Users";
+const User = require("./Models/userModel");
 
 const connectdb = async () => {
     try {
