@@ -7,16 +7,16 @@ const gallerieSchema = new mongoose.Schema({
 });
 
 const ProductSchema = new mongoose.Schema({
+    ref: {
+        type: String,
+        unique: true // Ajoutez cette option pour rendre la clé unique
+      },
+   
     name: {
         type: String,
         required: true
     },
-    ref: {
-        type: String,
-        trim: true,
-        required: true,
-        unique: true,
-    },
+  
     price: {
         type: Number,
         required: true,
@@ -25,7 +25,7 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    quantité: {
+    quantite: {
         type: Number,
         trim: true,
        
@@ -42,7 +42,7 @@ const ProductSchema = new mongoose.Schema({
 
     },
     category: [{
-        type: mongoose.Schema.Types.ObjectId,
+        type: String ,
         ref: 'Category',
         required: true,
     }],
@@ -59,7 +59,13 @@ const ProductSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
 
-    }
+    },
+    inStock: {
+        type: String,
+       
+
+    },
+  
 });
 
 module.exports = mongoose.model("Product", ProductSchema);

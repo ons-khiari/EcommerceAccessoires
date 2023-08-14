@@ -5,11 +5,7 @@ const CategorieSchema = new mongoose.Schema({
         trim: true,
         required: true,
     }, 
-    product: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'product',
-        required: true,
-    },
+  
  
 })
 

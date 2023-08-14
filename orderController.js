@@ -1,6 +1,6 @@
-const Order = require('../models/order');
-
-exports.createOrder = async (req, res) => {
+const Order = require('../Model/orderModels');
+module.exports = {
+createOrder : async (req, res) => {
     const order = new Order(req.body);
     try {
         await order.save();
@@ -8,18 +8,18 @@ exports.createOrder = async (req, res) => {
     } catch (e) {
         res.status(400).send(e);
     }
-};
+},
 
-exports.getAllOrders = async (req, res) => {
+getAllOrders : async (req, res) => {
     try {
         const orders = await Order.find({});
         res.send(orders);
     } catch (e) {
         res.status(500).send();
     }
-};
+},
 
-exports.getOrderById = async (req, res) => {
+getOrderById : async (req, res) => {
     try {
         const order = await Order.findById(req.params.id);
         if (!order) {
@@ -29,11 +29,11 @@ exports.getOrderById = async (req, res) => {
     } catch (e) {
         res.status(500).send();
     }
-};
+},
 
-exports.updateOrder = async (req, res) => {
+updateOrder : async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['product', 'quantity', 'status'];
+    const allowedUpdates = ['client','product', 'quantity','panier', 'orderDate','totalPrice','paymentMethod','deliveryAddress'];
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
 
     if (!isValidOperation) {
@@ -53,9 +53,9 @@ exports.updateOrder = async (req, res) => {
     } catch (e) {
         res.status(400).send(e);
     }
-};
+},
 
-exports.deleteOrder = async (req, res) => {
+deleteOrder : async (req, res) => {
     try {
         const order = await Order.findByIdAndDelete(req.params.id);
 
@@ -67,7 +67,7 @@ exports.deleteOrder = async (req, res) => {
     } catch (e) {
         res.status(500).send();
     }
-};
-
+},
+}
 
 // Ajoutez d'autres méthodes pour getOrder, updateOrder, etc. ici.

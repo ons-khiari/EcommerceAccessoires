@@ -1,19 +1,22 @@
 const mongoose = require('mongoose');
 
 const OrderSchema = new mongoose.Schema({
-  client: {
+  client: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Client',
-    required: true
-  },
-  product:{
+  
+ 
+}],
+  product:[{
     type: mongoose.Schema.Types.ObjectId,
-    required: true 
-  },
+    ref:'product',
+
+   
+  }],
   panier: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Panier',
-    required: true,
+    
   },
 
   orderDate: {
@@ -22,19 +25,22 @@ const OrderSchema = new mongoose.Schema({
   },
   totalPrice: {
     type: Number,
-    required: true
+    required:true, 
+  
   },
   paymentMethod: {
     type: String,
-    required: true
+     required:true, 
+   
   },
-  deliveryAddress: {
+   deliveryAddress: {
     type: String,
-    required: true
-  },
+   
+  }, 
   quantity: {
     type: Number,
-    required: true
+     required:true, 
+    
   },
 });
 

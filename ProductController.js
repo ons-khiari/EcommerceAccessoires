@@ -1,27 +1,36 @@
 const ProductModel=require('../Model/Product')
+  
+  
 module.exports={
-    create: async function(req, res) {
-        req.body["gallerie"]=req.files.length<=0 ? []:req.files.map(function(file){
-            return{name:file.filename};
-
-        });
+    
+     create : async (req, res) => {
         try {
+            if (!req.files || req.files.length <= 0) {
+              req.body["gallerie"] = [];
+            } else {
+              req.body["gallerie"] = req.files.map(function (file) {
+                return { name: file.filename };
+              });
+            }
             const Product = new ProductModel(req.body);
             const item = await Product.save();
-            res.status(201).json({
-                status: 201,
-                message: "success",
-                data: item,
-            });
-        } catch (err) {
-            res.status(500).json({
-                status: 500,
-                message: "Internal server error",
-                data: null,
-                error: err.message,
-            });
+        
+        
+          res.status(201).json({
+            status: 201,
+            message: "success",
+            data: item,
+          });
+         } catch (err) {
+          res.status(500).json({
+            status: 500,
+            message: "Internal server error",
+            data: null,
+            error: err.message,
+          });
         }
-    },
+     },
+      
     getAll: async function(req, res) {
         try {
             const Product = await ProductModel.find({}).exec();

@@ -4,7 +4,7 @@ const route = express.Router();
 const productController = require('../Controller/ProductController');
 const upload = require('../Middleware/Uploadpicture');
 
-route.post("/ad/img",upload.array('photos'), productController.create)
+route.post("/add",upload.array('photos'), productController.create)
 route.get("/", productController.getAll)
 route.put('/update/:id',upload.array('photos'),productController.update)
 route.delete('/delete/:id', productController.deleteproduct)
