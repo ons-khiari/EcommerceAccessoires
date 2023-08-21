@@ -170,7 +170,31 @@ const getAllUsers = (req, res, next) => {
         });
 };
 
+const getClients = (req, res, next) => {
+    User.find({ Type: 1 })
+        .then(clients => {
+            res.json(clients);
+        })
+        .catch(error => {
+            res.status(500).json({
+                error: 'Error fetching clients',
+            });
+        });
+};
+
+const getAdmins = (req, res, next) => {
+    User.find({ Type: 2 })
+        .then(admins => {
+            res.json(admins);
+        })
+        .catch(error => {
+            res.status(500).json({
+                error: 'Error fetching admins',
+            });
+        });
+};
+
 
 module.exports = {
-    register, login, update, deleteUser, getAllUsers,
+    register, login, update, deleteUser, getAllUsers, getAdmins, getClients
 }
