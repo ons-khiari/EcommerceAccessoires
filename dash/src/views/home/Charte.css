@@ -1,0 +1,35 @@
+.App {
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  
+}
+@media (max-width: 767px) {
+  .App {
+    flex-direction: column;
+    scroll-behavior: smooth;
+    overflow-wrap: break-word;
+    overflow-x: scroll;
+  
+  }
+}
+@media (max-width: 410px) {
+
+  .App{
+    margin: auto;
+  }.pie{
+    
+    margin-left: 80px;
+  }
+  
+  }
+  @media (max-width: 1178px) {
+    .pie {
+      flex-direction: column;
+      scroll-behavior: smooth;
+      overflow-wrap: break-word;
+      overflow-x: scroll;
+    
+    }
+  }
